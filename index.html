@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
     <head>
         <meta name="viewport"
             content="width=device-width, initial-scale=1.0">
@@ -23,6 +24,7 @@
 
         </style>
     </head>
+
     <body>
         <div class="container-fluid">
             <div class="row">
@@ -52,6 +54,7 @@
                             style="font-size: 68px"
                             id="24-hour-time"></p>
                         <table class="table">
+                            <caption>Cafeterias</caption>
                             <tr>
                                 <td class="bf">Bruce</td>
                                 <td class="bf">Kerr</td>
@@ -84,6 +87,82 @@
                                         target="_blank">West Info</a></td>
                             </tr>
                         </table>
+                        <table class="table">
+                            <caption>University Union</caption>
+                            <tr>
+                                <td class="bf">Avesta Restaurant</td>
+                                <td class="bf">Corner Store</td>
+                                <td class="bf">FTG Pantry / Krispy Krunchy</td>
+                                <td class="bf">Campus Chat Food Court</td>
+                                <td class="bf">Burger King</td>
+                                <td class="bf">Chick-Fil-A</td>
+                                <td class="bf">Fuzzy's Taco Shop</td>
+                                <td class="bf">Jamba Juice</td>
+                                <td class="bf">Starbucks</td>
+                                <td class="bf">Taco Bueno</td>
+                                <td class="bf">Which Wich</td>
+                            </tr>
+                            <tr>
+                                <td id="avesta"></td>
+                                <td id="corner"></td>
+                                <td id="ftg"></td>
+                                <td id="campuschat"></td>
+                                <td id="burgerking"></td>
+                                <td id="chickfila"></td>
+                                <td id="fuzzy"></td>
+                                <td id="jamba"></td>
+                                <td id="starbucks"></td>
+                                <td id="tacobueno"></td>
+                                <td id="whichwich"></td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <caption>Business Leadership Building</caption>
+                            <tr>
+                                <td class="bf">Biz Café</td>
+                            </tr>
+                            <tr>
+                                <td id="biz"></td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <caption>Wooten Hall</caption>
+                            <tr>
+                                <td class="bf">Go! Station</td>
+                            </tr>
+                            <tr>
+                                <td id="gostation"></td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <caption>General Academic Building (GAB)</caption>
+                            <tr>
+                                <td class="bf">Café GAB</td>
+                            </tr>
+                            <tr>
+                                <td id="gabcafe"></td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <caption>Near the GAB</caption>
+                            <tr>
+                                <td class="bf">Khush Roti</td>
+                            </tr>
+                            <tr>
+                                <td id="khushroti"></td>
+                            </tr>
+                        </table>
+                        <table class="table">
+                            <caption>Discovery Park</caption>
+                            <tr>
+                                <td class="bf">Park Place Market</td>
+                                <td class="bf">Discovery Perks</td>
+                            </tr>
+                            <tr>
+                                <td id="parkplace"></td>
+                                <td id="perks"></td>
+                            </tr>
+                        </table>
                     </center>
                 </div>
                 <div class="col-md-4">
@@ -93,7 +172,8 @@
                 <div class="col-md-4"></div>
                 <div class="col-md-4">
                     <p>Hours are for Fall 2017, based on UNT Dining posted hours on website.</p>
-                    <p>Report bugs and request/suggest new features on <a href="https://github.com/stuadv/untdining/issues" target="_blank">GitHub</a>.</p>
+                    <p>Report bugs and request/suggest new features on <a href="https://github.com/stuadv/untdining/issues"
+                            target="_blank">GitHub</a>.</p>
                     <p>&copy; 2017 Jeffrey Wang. All rights reserved. Not affiliated with UNT Dining.</p>
                 </div>
                 <div class="col-md-4"></div>
@@ -107,152 +187,7 @@
         <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment-with-locales.min.js"></script>
         <script src="js/moment.js"></script>
         <script src="js/moment-data.js"></script>
-        <script>
-        var refreshClock = setInterval(function() {
-            var now = moment().tz("America/Chicago");
-            var dotw = now.day();
-            var dotwnames = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
-            var hr = now.hours();
-            var hrform = (hr % 12 == 0 ? 12 : (hr % 12));
-            var min = now.minutes();
-            var minform = (min < 10 ? '0' + min : min);
-            var sec = now.seconds();
-            var secform = (sec < 10 ? '0' + sec : sec);
-            var mer = (hr > 12 ? 'PM' : 'AM');
-            $('#dotw').html(dotwnames[dotw]);
-            $('#12-hour-time').html(hrform + ':' + minform + ':' + secform + ' ' + mer);
-            $('#24-hour-time').html(hr + ":" + minform + ":" + secform);
-            // Bruce
-            var bruce = $('#bruce');
-            if (bruceOpen(dotw, hr, min, sec)) {
-                bruce.attr('class', 'lbf success');
-                bruce.html('OPEN');
-            } else {
-                bruce.attr('class', 'lbf danger');
-                bruce.html('Closed');
-            }
-            // Kerr
-            var kerr = $('#kerr');
-            if (kerrOpen(dotw, hr, min, sec)) {
-                kerr.attr('class', 'lbf success');
-                kerr.html('OPEN');
-            } else {
-                kerr.attr('class', 'lbf danger');
-                kerr.html('Closed');
-            }
-            // Mean Greens
-            var mg = $('#mg');
-            if (mgOpen(dotw, hr, min, sec)) {
-                mg.attr('class', 'lbf success');
-                mg.html('OPEN');
-            } else {
-                mg.attr('class', 'lbf danger');
-                mg.html('Closed');
-            }
-            // Champs
-            var champs = $('#champs');
-            if (champsOpen(dotw, hr, min, sec)) {
-                champs.attr('class', 'lbf success');
-                champs.html('OPEN');
-            } else {
-                champs.attr('class', 'lbf danger');
-                champs.html('Closed');
-            }
-            // West
-            var west = $('#west');
-            if (westOpen(dotw, hr, min, sec)) {
-                west.attr('class', 'lbf success');
-                west.html('OPEN');
-            } else {
-                west.attr('class', 'lbf danger');
-                west.html('Closed');
-            }
-        }, 1000);
-        function bruceOpen( day, hr, min, sec ) {
-          if ( day > 0 && day < 6 ) {
-            if ( day != 5 ) {
-              if ( hr >= 7 && hr < 21 ) {
-                return true;
-              }
-            } else {
-              if ( hr >= 7 && hr < 20 ) {
-                return true;
-              }
-            }
-          }
-          return false;
-        }
-        function kerrOpen( day, hr, min, sec ) {
-          if ( day == 5 && hr >= 7 && ( hr <= 14 && min < 30 ) ) {
-            return true;
-          } else if ( day == 7 && hr >= 7 && hr < 20 ) {
-            return true;
-          } else if ( day == 6 ) {
-            if ( hr >= 7 && ( hr <= 14 && min < 30 ) ) {
-              return true;
-            } else if ( ( hr >= 16 && min >= 30 ) && hr < 8 ) {
-              return true;
-            }
-          } else {
-            if ( hr >= 7 && hr < 20 ) {
-              return true;
-            }
-          }
-          return false;
-        }
-        function mgOpen( day, hr, min, sec ) {
-          if ( day > 0 && day < 5 ) {
-            if ( hr >= 7 && ( hr < 9 || hr == 9 && min < 30 ) ) {
-              return true;
-            } else if ( hr >= 11 && hr < 14 ) {
-              return true;
-            } else if ( ( hr >= 16 && min >= 30 || hr >= 17 ) && hr < 20 ) {
-              return true;
-            }
-          }
-          if ( day == 5 ) {
-            if ( hr >= 7 && ( hr < 9 || hr == 9 && min < 30 ) ) {
-              return true;
-            } else if ( hr >= 11 && hr < 14 ) {
-              return true;
-            }
-          }
-          return false;
-        }
-        function champsOpen( day, hr, min, sec ) {
-          if ( day > 0 && day < 5 ) {
-            if ( hr >= 7 && ( hr < 9 || hr == 9 && min < 30 ) ) {
-              return true;
-            } else if ( hr >= 11 && hr < 14 ) {
-              return true;
-            } else if ( ( hr >= 16 && min >= 30 || hr >= 17 ) && hr < 20 ) {
-              return true;
-            }
-          }
-          if ( day == 5 ) {
-            if ( hr >= 7 && ( hr < 9 || hr == 9 && min < 30 ) ) {
-              return true;
-            } else if ( hr >= 11 && hr < 14 ) {
-              return true;
-            }
-          }
-          return false;
-        }
-        function westOpen( day, hr, min, sec ) {
-          if ( day > 0 && day < 5 ) {
-            if ( hr >= 11 && hr < 14 ) {
-              return true;
-            }
-            if ( ( hr >= 16 && min >= 30 || hr >= 17 ) && hr < 19 ) {
-              return true;
-            }
-          } else if ( day == 5 ) {
-            if ( hr >= 11 && hr < 14 ) {
-              return true;
-            }
-          }
-          return false;
-        }
-        </script>
+        <script src="js/times.js"></script>
     </body>
+
 </html>
